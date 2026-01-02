@@ -433,4 +433,22 @@ document.addEventListener('DOMContentLoaded', () => {
             scrollTea.style.top = teaTop + 'px';
         }
     });
+
+    // ===== BREWING STATION ANIMATION TRIGGER =====
+    const brewingStation = document.querySelector('.mini-brewing-station');
+    if (brewingStation) {
+        const startBrewing = () => {
+            brewingStation.classList.add('brewing');
+            setTimeout(() => {
+                brewingStation.classList.remove('brewing');
+            }, 4000); // Duration of the pour/fill animation
+        };
+
+        // Initial delay then start cycle
+        setTimeout(() => {
+            startBrewing();
+            setInterval(startBrewing, 7000); // Repeat every 7 seconds
+        }, 1500);
+    }
 });
+
