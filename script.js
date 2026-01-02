@@ -404,4 +404,33 @@ document.addEventListener('DOMContentLoaded', () => {
             heroImage.style.animation = 'slideInRight 1s ease-out forwards';
         }
     });
+
+    // ===== SCROLL PROGRESS COFFEE CUP =====
+    const scrollProgressContainer = document.querySelector('.scroll-progress-container');
+    const scrollPercentageText = document.querySelector('.scroll-percentage');
+    const scrollTea = document.querySelector('#scroll-tea');
+
+    window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+
+        if (scrollProgressContainer) {
+            if (winScroll > 100) {
+                scrollProgressContainer.classList.add('visible');
+            } else {
+                scrollProgressContainer.classList.remove('visible');
+            }
+        }
+
+        if (scrollPercentageText) {
+            scrollPercentageText.textContent = Math.round(scrolled) + '%';
+        }
+
+        if (scrollTea) {
+            // Tea level: top: 20px is empty, top: 5px is full
+            const teaTop = 20 - (scrolled * 0.15);
+            scrollTea.style.top = teaTop + 'px';
+        }
+    });
 });

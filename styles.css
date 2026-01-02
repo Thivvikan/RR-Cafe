@@ -419,7 +419,7 @@ p {
 .support-text {
     font-size: 1.15rem;
     color: var(--text-muted);
-    margin-bottom: 2.5rem;
+    margin-bottom: 1rem;
 }
 
 .hero-buttons {
@@ -955,10 +955,6 @@ p {
 }
 
 @media (max-width: 768px) {
-    .navbar {
-        padding: 0.5rem 0 !important;
-    }
-
     h1 {
         font-size: 2.5rem;
     }
@@ -990,16 +986,16 @@ p {
 
     /* Mobile Navigation Menu - CRITICAL */
     .nav-links {
-        position: absolute !important;
-        top: 100% !important;
+        position: fixed !important;
+        top: 80px !important;
         left: 0 !important;
         right: 0 !important;
         width: 100% !important;
         background: rgba(139, 30, 30, 0.98) !important;
         flex-direction: column !important;
-        padding: 0 !important;
-        box-shadow: none !important;
-        border-top: none !important;
+        padding: 1.5rem !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
         z-index: 998 !important;
         max-height: 0 !important;
         overflow: hidden !important;
@@ -1009,9 +1005,6 @@ p {
 
     .nav-links.active {
         max-height: 100vh !important;
-        padding: 1.5rem !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
         overflow-y: visible !important;
     }
 
@@ -1295,4 +1288,197 @@ footer {
 .map-container {
     width: 100% !important;
     background: #f0f0f0;
+}
+
+/* Coffee Cup Animation */
+.coffee-cup-container {
+    position: relative;
+    width: 120px;
+    height: 100px;
+    margin: 3rem 0;
+    transform: scale(0.8);
+    animation: slideInLeft 1.1s ease-out;
+}
+
+.cup {
+    position: relative;
+    width: 100px;
+    height: 80px;
+    background: linear-gradient(to right, #ffffff, #f1f1f1);
+    border-bottom-left-radius: 35%;
+    border-bottom-right-radius: 35%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.cup .top {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: linear-gradient(to right, #ffffff, #f1f1f1);
+    border-radius: 50%;
+}
+
+.cup .circle {
+    position: absolute;
+    top: 5px;
+    left: 8px;
+    width: calc(100% - 16px);
+    height: 30px;
+    background: linear-gradient(to left, #f9f9f9, #d9d9d9);
+    border-radius: 50%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.cup .tea {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(var(--primary-red), var(--coffee-brown));
+    border-radius: 50%;
+}
+
+.cup .handle {
+    position: absolute;
+    right: -25px;
+    top: 10px;
+    width: 50px;
+    height: 55px;
+    border: 10px solid #f1f1f1;
+    border-left: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-radius: 50%;
+    transform: rotate(42deg);
+}
+
+.cup-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -10%);
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--primary-red);
+    opacity: 0.8;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.vapour {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 40px;
+    background: radial-gradient(circle, rgba(111, 78, 55, 0.8) 0%, transparent 80%);
+    filter: blur(4px);
+    animation: vapourFloat 3s ease-in-out infinite;
+    z-index: 2;
+}
+
+@keyframes vapourFloat {
+
+    0%,
+    100% {
+        transform: translate(-50%, 0) scale(1);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: translate(-50%, -10px) scale(1.2);
+        opacity: 1.0;
+    }
+}
+
+.steam-container {
+    position: absolute;
+    top: -80px;
+    left: 15px;
+    display: flex;
+    z-index: 1;
+}
+
+.steam-container span {
+    position: relative;
+    bottom: 0;
+    display: block;
+    margin: 0 2px;
+    min-width: 6px;
+    height: 60px;
+    background: rgba(111, 78, 55, 0.9);
+    border-radius: 50%;
+    animation: animateSteam 5s linear infinite;
+    opacity: 0;
+    filter: blur(3px);
+    animation-delay: calc(var(--i) * -0.5s);
+}
+
+@keyframes animateSteam {
+    0% {
+        transform: translateY(0) scaleX(1);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: translateY(-60px) scaleX(3);
+        opacity: 0.5;
+    }
+
+    95% {
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(-120px) scaleX(6);
+    }
+}
+
+/* Scroll Progress Coffee Cup */
+.scroll-progress-container {
+    position: fixed;
+    bottom: 110px;
+    right: 20px;
+    z-index: 998;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    transition: var(--transition);
+    opacity: 0;
+}
+
+.scroll-progress-container.visible {
+    opacity: 1;
+}
+
+.scroll-percentage {
+    background: var(--primary-red);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-family: var(--font-heading);
+}
+
+.scroll-progress-container .coffee-cup-container {
+    margin: 0;
+    transform: scale(0.6);
+    transform-origin: bottom right;
+}
+
+.cup .tea {
+    transition: top 0.3s ease-out;
 }
